@@ -1,6 +1,6 @@
 (() => {
 
-    const fullName = ( firstName: string, lastName?:string, upper?:boolean = false ):string =>{
+    const fullName = ( firstName: string, lastName?:string, upper:boolean = false ):string =>{
         if ( upper ) {
             return `${ firstName } ${lastName || "no last name"}`.toUpperCase();
         } else {
@@ -12,10 +12,10 @@
     const name = fullName('Tony', 'Stark', true);
     console.log({ name });
 
-    const suma = (a:number, b:number, c:number , d:number , e:number , f:number ):number =>{
+    const addNumber = (a:number, b:number, c:number , d:number , e:number , f:number ):number =>{
         return ( a + b + c + d + e + f );
     }
-    const sumaTotal = suma(10,5,3,-99,-1,100)
+    const sumaTotal = addNumber(10,5,3,-99,-1,100)
     console.log({sumaTotal});
     
 })()
