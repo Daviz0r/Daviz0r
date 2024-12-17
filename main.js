@@ -1,163 +1,109 @@
 "use strict";
-const msg = "Hola mundo";
-const nuevaFuncion = "Nueva funcion";
-console.log(msg);
-///
-let tablaDelUno = function () {
-    for (let i = 0; i <= 10; i++)
-        console.log("1 x", i, "=", 1 * i);
-};
-tablaDelUno();
-///
-for (let i = 0; i <= 10; i++) {
-    console.log("2 x", i, "=", 2 * i);
-}
-///
-function tablaDelTres(hasta) {
-    for (let i = 0; i <= hasta; i++) {
-        console.log("3 x", i, "=", 3 * i);
-    }
-}
-tablaDelTres(5);
-/// nueva funcion
-console.log(nuevaFuncion);
-function tablaMultiplicar(desde, tabla, hasta) {
-    for (let i = desde; i <= hasta; i++) {
-        console.log(tabla, 'x', i, '=', tabla * i);
-    }
-}
-tablaMultiplicar(9, 5, 10);
-const batimovil = {
-    carroceria: "Negra",
-    modelo: "6x6",
-    antibalas: true,
-    pasajeros: 4
-};
-const bumblebee = {
-    carroceria: "Amarillo con negro",
-    modelo: "4x2",
-    antibalas: true,
-    pasajeros: 4,
-    disparar() {
-        console.log('Disparando');
-    }
-};
-console.log(bumblebee);
-const villanos = [{
-        nombre: "Lex Luthor",
-        edad: 54,
-        mutante: false
-    }, {
-        nombre: "Erik Magnus Lehnsherr",
-        edad: 49,
-        mutante: true
-    }, {
-        nombre: "James Logan",
-        edad: undefined,
-        mutante: true
-    }];
-// Multiples tipos
-// cree dos tipos, uno para charles y otro para apocalipsis
-const charles = {
-    poder: "psiquico",
-    estatura: 1.78
-};
-const apocalipsis = {
-    lider: true,
-    miembros: ["Magneto", "Tormenta", "Psylocke", "Angel"]
-};
-// Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
-let mystique;
-mystique = charles;
-mystique = apocalipsis;
 (() => {
-    const fullName = (firstName, lastName, upper = false) => {
-        if (upper) {
-            return `${firstName} ${lastName || "no last name"}`.toUpperCase();
+    class Mutante {
+        constructor(name, realName) {
+            this.name = name;
+            this.realName = realName;
         }
-        else {
-            return `${firstName} ${lastName || "no last name"}`;
-        }
-    };
-    const name = fullName('Tony', 'Stark', true);
-    console.log({ name });
-    const addNumber = (a, b, c, d, e, f) => {
-        return (a + b + c + d + e + f);
-    };
-    const sumaTotal = addNumber(10, 5, 3, -99, -1, 100);
-    console.log({ sumaTotal });
-})();
-(() => {
-    const fullName = (firstName, lastName) => {
-        return `${firstName} ${lastName || "no last name"}`;
-    };
-    const name = fullName('Tony');
-    console.log({ name });
-    const suma = (a, b, c, d, e, f) => {
-        return (a + b + c + d + e + f);
-    };
-    const sumaTotal = suma(10, 5, 3, -99, -1, 100);
-    console.log({ sumaTotal });
-})();
-(() => {
-    const fullName = (firstName, lastName) => {
-        return `${firstName} ${lastName}`;
-    };
-    const name = fullName('Tony', 'Stark');
-    console.log({ name });
-})();
-(() => {
-    const hero = 'Flash';
-    function returnName() {
-        return hero;
     }
-    const activateBatisignal = () => {
-        return 'Batiseñal Activada!';
+    class Xmen extends Mutante {
+        salvarMundo() {
+            return 'Mundo a salvo!';
+        }
+    }
+    class Villian extends Mutante {
+        conquistarMundo() {
+            return 'Mundo conquistado';
+        }
+    }
+    const wolverine = new Xmen('Wolverine', 'Logan');
+    const magneto = new Villian('Magneto', 'Magnus');
+    // console.log(wolverine.salvarMundo());
+    // console.log(magneto.conquistarMundo());
+    const printName = (character) => {
+        console.log(character.realName);
     };
-    console.log(typeof activateBatisignal);
+    // printName( magneto );
 })();
 (() => {
-    const fullName = (firstName, ...restArgs) => {
-        return `${firstName} ${restArgs.join(' ')}`;
-    };
-    const name = fullName('Tony', 'Stark', 'Gonzalez');
-    console.log({ name });
-    const suma = (a, b, c, d, e, f) => {
-        return (a + b + c + d + e + f);
-    };
-    const sumaTotal = suma(10, 5, 3, -99, -1, 100);
-    console.log({ sumaTotal });
-})();
-(() => {
-    let flash = {
-        name: 'Barry Allen',
-        age: 28,
-        powers: ['Super volocidad', 'Viajar en el tiempo']
-    };
-    let superman = {
-        name: 'Clark kent',
-        age: 60,
-        powers: ['Super volocidad']
-    };
-})();
-(() => {
-    let flash = {
-        name: 'Barry Allen',
-        age: 28,
-        powers: ['Super volocidad', 'Viajar en el tiempo'],
-        getName() {
+    class Avenger {
+        static getAvgAge() {
             return this.name;
         }
-    };
-    let superman = {
-        name: 'Clark kent',
-        age: 60,
-        powers: ['Super volocidad'],
-        getName() {
-            return this.name;
-        },
-    };
-    console.log(flash.getName());
-    console.log({ superman });
+        constructor(name, team, realName) {
+            this.name = name;
+            this.team = team;
+            this.realName = realName;
+        }
+        bio() {
+            return `${this.name} (${this.team})!!!`;
+        }
+    }
+    // private name: string;
+    // private team: string;
+    // public realName?: string;
+    Avenger.avgAge = 35;
+    // const antman: Avenger = new Avenger('Antman', 'Capitan', 'Scott Lang');
+    // console.log( antman )
+    // console.log( Avenger.getAvgAge() )
+})();
+(() => {
+    class Avenger {
+        constructor(name, realName) {
+            this.name = name;
+            this.realName = realName;
+            console.log('Constructor Avenger llamado!');
+        }
+        getFullname() {
+            return `${this.name} ${this.realName}`;
+        }
+    }
+    class Xmen extends Avenger {
+        constructor(name, realName, isMutant) {
+            super(name, realName);
+            this.isMutant = isMutant;
+            console.log('Constructor Xmen llamado');
+        }
+        get fullName() {
+            return `${this.name} - ${this.realName}`;
+        }
+        set fullName(name) {
+            if (name.length < 3) {
+                throw new Error('EL nombre debe de ser mayor de 3 letras');
+            }
+            this.name = name;
+        }
+        getFullnameDesdeXmen() {
+            console.log(super.getFullname());
+        }
+    }
+    // const wolverine = new Xmen('Wolverine','Logan', true)
+    // wolverine.fullName = 'Fe';
+    // console.log(wolverine.fullName );
+    // wolverine.getFullnameDesdeXmen();
+})();
+(() => {
+    class Apocalipsis {
+        constructor(name) {
+            this.name = name;
+        }
+        static callApocalipsis() {
+            if (!Apocalipsis.intance) {
+                Apocalipsis.intance = new Apocalipsis('Soy apocalipsis el único');
+            }
+            return Apocalipsis.intance;
+        }
+        changeName(newName) {
+            this.name = newName;
+        }
+    }
+    const apocalipsis1 = Apocalipsis.callApocalipsis();
+    const apocalipsis2 = Apocalipsis.callApocalipsis();
+    const apocalipsis3 = Apocalipsis.callApocalipsis();
+    apocalipsis1.changeName('Xavier');
+    // const apocalipsis1 = new Apocalipsis('Soy Apocalipsis1... el único')
+    // const apocalipsis2 = new Apocalipsis('Soy Apocalipsis2... el único')
+    // const apocalipsis3 = new Apocalipsis('Soy Apocalipsis3... el único')
+    console.log(apocalipsis1, apocalipsis2, apocalipsis3);
 })();
 //# sourceMappingURL=main.js.map
